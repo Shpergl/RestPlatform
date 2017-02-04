@@ -40,10 +40,12 @@ class ModelTest(TestCase):
         return User.objects.get(email=email).password
 
     def test_can_register_user(self):
+        """ test for /api/v1/register/ [POST]"""
         response = self.client.post(reverse('user-register'), self.data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_can_get_token(self):
+        """test for  /api/v1/get-token/ [POST]"""
         self.client.login(email=self.user_data['email'], password=self.user_data['password'])
         user = User.objects.get(email=self.user_data['email'])
         response = self.client.post(reverse('get-token'), {'email':self.user_data['email'],
@@ -51,6 +53,7 @@ class ModelTest(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_can_get_profile(self):
+        """ test for /api/v1/profile/ [GET]"""
         self.client.login(email=self.user_data['email'], password=self.user_data['password'])
         response = self.client.get(reverse('user-profile'))
         self.assertEqual(response.status_code, status.HTTP_200_OK)

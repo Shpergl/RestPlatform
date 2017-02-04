@@ -1,0 +1,15 @@
+ version: '2'
+ services:
+   db:
+     image: postgres
+   web:
+     restart: always
+     build: .
+     image: django
+     command: ./docker-entrypoint.sh
+     volumes:
+       - .:/code
+     ports:
+       - "8000:8000"
+     depends_on:
+       - db

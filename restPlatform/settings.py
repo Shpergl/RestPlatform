@@ -59,15 +59,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'restPlatform.wsgi.application'
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql',
-#        'NAME': 'postgres',
-#        'USER': 'postgres',
-#        'HOST': 'db',
-#        'PORT': 5432,
-#    }
-#}
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
@@ -76,17 +67,17 @@ if DEBUG:
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
+       }
     }
+
 else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'restfulApi',
-            'USER': 'django',
-            'PASSWORD': 'django',
-            'HOST': 'localhost',
-            'POSRT': '',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'HOST': 'db',
+            'POSRT': 5432,
 
         }
     }
@@ -148,5 +139,5 @@ AUTHENTICATION_BACKENDS = (
 
 )
 
-#LOGIN_URL = r"/login/"
+STATIC_ROOT = 'static'
 
